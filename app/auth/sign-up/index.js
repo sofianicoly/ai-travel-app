@@ -1,14 +1,43 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ToastAndroid } from 'react-native';
+import React, { useState } from 'react';
 import { useNavigation, useRouter } from 'expo-router';
 import { Colors } from './../../../constants/Colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
-//import { createUserWithEmailAndPassword } from 'firebase/auth';
-//import { auth } from '../../../configs/FirebaseConfig';
+import { auth } from '../../../configs/FirebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 export default function SignUp() {
   const navigation = useNavigation();
   const router = useRouter();
+
+  const[email,setEmail]=useState();
+  const[senha,setSenha]=useState();
+  const[nome,setNome]=useState();
+
+  const OnCreateAccount=()=>{
+
+    if(!email&&!senha&&!nome){
+        ToastAndroid.show('Preencha todas as informações', ToastAndroid.BOTTOM)
+        return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, senha)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    router.replace('/mytrip')
+    console.log(user);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage, errorCode);
+    // ..
+  });
+
+  }
 
   return (
     <View
@@ -50,6 +79,7 @@ export default function SignUp() {
         <TextInput
           style={styles.input}
           placeholder="Digite seu Nome completo"
+          onChangeText={(value)=>setNome(value)}
         />
       </View>
 
@@ -59,6 +89,7 @@ export default function SignUp() {
         <TextInput
           style={styles.input}
           placeholder="Digite seu E-mail"
+          onChangeText={(value)=>setEmail(value)}
         />
       </View>
 
@@ -69,11 +100,12 @@ export default function SignUp() {
           style={styles.input}
           secureTextEntry={true}
           placeholder="Digite sua Senha"
+          onChangeText={(value)=>setSenha(value)}
         />
       </View>
 
       {/* Cadastrar */}
-      <TouchableOpacity
+      <TouchableOpacity onPress={OnCreateAccount}
         style={{
           padding: 20,
           backgroundColor: Colors.primary,
