@@ -42,5 +42,6 @@ export default function StartNewTripCard() {
         }}>Nova viagem</Text>
       </TouchableOpacity>
     </View>
+    //teste
   )
 }
