@@ -12,13 +12,13 @@ export default function RootLayout() {
   const user=auth.currentUser;
 
   return (
-    <Stack>
+    <Stack screenOptions={{
+      headerShown:false
+    }}>
     {/*<Stack screenOptions={{
       headerShown: false,
     }}>*/}
-      <Stack.Screen name="(tabs)" options={{
-        headerShown:false
-      }}/>
+      <Stack.Screen name="(tabs)"/>
     </Stack>
   );
 }
