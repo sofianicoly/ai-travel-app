@@ -27,8 +27,11 @@ export default function SearchPlace() {
       backgroundColor:Colors.white,
       height: '100%'
     }}> 
+      <Text style={{ fontFamily: 'outfit-bold', fontSize: 30, marginTop:80 }}>
+        Para onde quer viajar?
+      </Text>
       <GooglePlacesAutocomplete
-      placeholder='Escolha o seu destino'
+      placeholder='Escolher'
       fetchDetails={true}
       onPress={(data, details = null) => {
         // 'details' is provided when fetchDetails = true
@@ -50,7 +53,7 @@ export default function SearchPlace() {
         textInputContainer:{
           borderWidth: 1,
           borderRadius: 5,
-          marginTop:10
+          marginTop:25
         }
       }}
     />

@@ -10,7 +10,15 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{
       headerShown:false,
-      tabBarActiveTintColor:Colors.primary
+      tabBarActiveTintColor:Colors.primary,
+      tabBarStyle: {
+        height: 65, // Define a altura da barra de abas
+        paddingBottom: 10, // Adiciona um espaço para os ícones
+        paddingTop: 10, // Ajusta o espaçamento superior
+        position: 'absolute', // Para evitar que a barra ocupe espaço com transparência
+        borderTopColor: 'transparent',
+        borderTopWidth: 0, // Remove a borda superior
+      },
     }}>
         <Tabs.Screen name='mytrip'
           options={{
