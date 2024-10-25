@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { Colors } from './../../constants/Colors'
+import { router } from 'expo-router';
 
 
 export default function StartNewTripCard() {
@@ -29,7 +30,9 @@ export default function StartNewTripCard() {
         color:Colors.grey
       }}>Parece que está na hora de planejar uma nova experiência! Clique abaixo para começar</Text>
 
-      <TouchableOpacity style={{
+      <TouchableOpacity 
+      onPress={()=>router.push('/create-trip/search-place')}
+      style={{
             padding:10,
             backgroundColor:Colors.primary,
             borderRadius:15,
