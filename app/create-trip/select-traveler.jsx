@@ -1,6 +1,6 @@
 import { View, Text, FlatList } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigation } from 'expo-router'
+import { Link, useNavigation } from 'expo-router'
 import { Colors } from './../../constants/Colors';
 import { SelectTraveleslist } from './../../constants/Options';
 import OptionCard from '../../components/CreateTrip/OptionCard';
@@ -8,12 +8,12 @@ import { TouchableOpacity } from 'react-native';
 import { CreateTripContext } from '../../context/CreateTripContext';
 export default function SelectTraveler() {
 
-  const navegation=useNavigation();
+  const navigation=useNavigation();
   const [selectedTraveler,setSelectedTraveler] = useState(null);
   const {tripData,setTripData}=useContext(CreateTripContext);
 
   useEffect(()=>{
-    navegation.setOptions({
+    navigation.setOptions({
       headerShown:true,
       headerTransparent:true,
       headerTitle:'' 
@@ -56,25 +56,26 @@ export default function SelectTraveler() {
           keyExtractor={(item) => item.id.toString()} // Adiciona uma chave única
         />
       </View>
-      <TouchableOpacity 
-    style={{
-      backgroundColor: Colors.primary, // Adiciona uma cor de fundo
-      padding: 20, // Aumenta o padding para que o botão fique maior
-      borderRadius: 15,
-      marginTop: 20
-    }}
-    onPress={() => {
-      
-    }}>
-    <Text style={{
-      textAlign: 'center',
-      color: Colors.white,
-      fontFamily: 'outfit-medium', 
-      fontSize: 19 
-    }}>
-      Continuar
-    </Text>
-  </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: Colors.primary, // Adiciona uma cor de fundo
+          padding: 20, // Aumenta o padding para que o botão fique maior
+          borderRadius: 15,
+          marginTop: 20
+        }}>
+        <Link href={'/create-trip/select-dates'}
+        style={{
+          width:'100%',
+          textAlign:'center'
+        }}>
+        <Text style={{
+          textAlign: 'center',
+          color: Colors.white,
+          fontFamily: 'outfit-medium', 
+          fontSize: 19 
+        }}>Continuar</Text>
+        </Link>
+      </TouchableOpacity>
     </View>
   )
 }
