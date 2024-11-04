@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React, { useContext, useEffect } from 'react'
-import { useNavigation } from 'expo-router';
+import { useNavigation , useRouter} from 'expo-router';
 import { Colors } from '../../constants/Colors';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { CreateTripContext } from '../../context/CreateTripContext';
@@ -10,6 +10,7 @@ import { TouchableOpacity } from 'react-native';
 export default function ReviewTrip() {
   const navigation=useNavigation();
   const {tripData,setTripData}=useContext(CreateTripContext);
+  const router=useRouter();
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -60,7 +61,7 @@ export default function ReviewTrip() {
           }}>Destino</Text>
           <Text style={{
             fontFamily:'outfit-medium',
-            fontSize:20
+            fontSize:19
           }}>{tripData.locationInfo?.name}</Text>
         </View>
         
@@ -83,7 +84,7 @@ export default function ReviewTrip() {
           }}>Data da ida</Text>
           <Text style={{
             fontFamily:'outfit-medium',
-            fontSize:20
+            fontSize:19
           }}>{moment(tripData?.startDate).format('DD MMM')
           +' até '+
           moment(tripData.endDate).format('DD MMM ')}
@@ -108,7 +109,7 @@ export default function ReviewTrip() {
           }}>A viagem é</Text>
           <Text style={{
             fontFamily:'outfit-medium',
-            fontSize:20
+            fontSize:19
           }}>{tripData?.traveler?.title} </Text>
         </View>
         </View>
@@ -130,13 +131,14 @@ export default function ReviewTrip() {
           }}>Orçamento</Text>
           <Text style={{
             fontFamily:'outfit-medium',
-            fontSize:20
+            fontSize:19
           }}>{tripData?.budget} </Text>
         </View>
         </View>
         {/* botao gerar */}
         <TouchableOpacity
-        //onPress={()=>onClickContinue()}
+        onPress={() => router.replace('/create-trip/generate-trip')}
+
         style={{
           backgroundColor: Colors.primary, // Adiciona uma cor de fundo
           padding: 20, // Aumenta o padding para que o botão fique maior

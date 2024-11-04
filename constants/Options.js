@@ -49,3 +49,11 @@ export const SelectBudgetOptions = [
         icon: '💰'
     }
 ]
+
+
+export const AI_PROMPT = 'Gere um plano de viagem para o local: {location}, por {totalDays} dias e {totalNight} noites para {traveler} com um orçamento de {budget}. Inclua detalhes do voo, como preço do voo (exemplo: barato: 200$ a 300$, moderado: 500.00 luxuoso: +1000$) com URL de reserva, lista de opções de hotéis com Nome do Hotel, endereço do hotel, preço do hotel, URL da imagem do hotel, coordenadas geográficas, classificação, descrições e locais para visitar nas proximidades com nome do local, detalhes do local, URL da imagem do local, coordenadas geográficas, preços das passagens, tempo de viagem para cada um dos locais por {totalDays} dias e {totalNight} noites, com o plano de cada dia, incluindo a melhor hora para visitar, em formato JSON.';
+
+
+
+
+
