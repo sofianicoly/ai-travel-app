@@ -11,6 +11,7 @@ export default function TabLayout() {
     <Tabs screenOptions={{
       headerShown:false,
       tabBarActiveTintColor:Colors.primary,
+      tabBarShowLabel: false,
       tabBarStyle: {
         height: 65, // Define a altura da barra de abas
         paddingBottom: 10, // Adiciona um espaço para os ícones

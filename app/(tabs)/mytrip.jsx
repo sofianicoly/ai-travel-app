@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Colors } from './../../constants/Colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -23,41 +23,44 @@ export default function MyTrip() {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      setUserTrips((prev) => [...prev, doc.data()]);
+      console.log(doc.id, " => ", doc.data());
+      setUserTrips(prev => [...prev, doc.data()]);
     });
     setLoading(false);
   };
 
   return (
-    <View
+    <ScrollView
       style={{
+        flex: 1,
+        backgroundColor: Colors.white,
+      }}
+      contentContainerStyle={{
         padding: 25,
         paddingTop: 55,
-        backgroundColor: Colors.white,
-        height: '100%',
+        paddingBottom: 100, // Adiciona padding extra ao final para garantir que o último item seja visível
       }}
     >
-      {loading && <ActivityIndicator size={'large'} color={Colors.primary} />}
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignContent: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: 'outfit-bold',
-            fontSize: 35,
-          }}
-        >
-          Minhas Viagens
-        </Text>
+      {loading && <ActivityIndicator size="large" color={Colors.primary} />}
+      
+      <View style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        <Text style={{
+          fontFamily: 'outfit-bold',
+          fontSize: 35
+        }}>Minhas Viagens</Text>
         <Ionicons name="add-circle" size={50} color="black" />
       </View>
 
-      {userTrips.length === 0 ? <StartNewTripCard /> : <UserTripList userTrips={userTrips} />}
-    </View>
+      {userTrips.length === 0 ? 
+        <StartNewTripCard />
+        : 
+        <UserTripList userTrips={userTrips} />  
+      }
+    </ScrollView>
   );
 }
