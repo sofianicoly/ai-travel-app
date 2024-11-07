@@ -4,10 +4,17 @@ import moment from 'moment';
 import { Colors } from '../../constants/Colors';
 
 export default function UserTripCard({ trip }) {
+    // Função que converte a string JSON para objeto, apenas uma vez
     const formatData = (data) => {
-        return JSON.parse(data); // Converte para JSON apenas uma vez
-    }
+        try {
+            return JSON.parse(data);  // Converte para JSON apenas uma vez
+        } catch (error) {
+            console.error("Erro ao parsear tripData:", error);
+            return {};  // Retorna um objeto vazio em caso de erro
+        }
+    };
 
+    // Converte tripData para objeto
     const tripData = formatData(trip.tripData);
 
     return (
@@ -41,7 +48,7 @@ export default function UserTripCard({ trip }) {
                     fontSize: 15,
                     color: Colors.grey,
                 }}>
-                    {moment(tripData.startDate).format('DD MMM YYYY')}
+                    {tripData?.startDate ? moment(tripData.startDate).format('DD MMM YYYY') : 'Data não disponível'}
                 </Text>
 
                 <Text style={{

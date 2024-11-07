@@ -3,11 +3,13 @@ import React from 'react';
 import moment from 'moment';
 import { Colors } from '../../constants/Colors';
 import UserTripCard from './UserTripCard';
+import { useRouter } from 'expo-router';
 
 export default function UserTripList({ userTrips }) {
     if (!userTrips || userTrips.length === 0) return null;
 
     const LatestTrip = JSON.parse(userTrips[0].tripData); // Converte para JSON
+    const router=useRouter();
 
     return (
         <View>
@@ -66,7 +68,6 @@ export default function UserTripList({ userTrips }) {
                         </Text>
                     </View>
                     <TouchableOpacity
-                        // onPress={() => router.push('/create-trip/search-place')}
                         style={{
                             padding: 15,
                             backgroundColor: Colors.primary,
@@ -74,15 +75,21 @@ export default function UserTripList({ userTrips }) {
                             paddingHorizontal: 30,
                             marginTop: 15,
                         }}>
-                        <Text style={{
-                            color: Colors.white,
-                            fontFamily: 'outfit-medium',
-                            fontSize: 17,
-                            textAlign: 'center'
-                        }}>
+                        <Text 
+                            onPress={() => router.push({
+                                pathname: '/trip-details', 
+                                params: { trip:JSON.stringify(userTrips[0]) }  // Passando diretamente o objeto, sem stringificar
+                            })}
+                            style={{
+                                color: Colors.white,
+                                fontFamily: 'outfit-medium',
+                                fontSize: 17,
+                                textAlign: 'center'
+                            }}>
                             Veja seus planos
                         </Text>
                     </TouchableOpacity>
+
                 </View>
 
                 {userTrips.map((trip, index) => (
