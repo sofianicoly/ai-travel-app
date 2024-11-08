@@ -11,7 +11,7 @@ export default function HotelList({hotelList}) {
         fontFamily:'outfit-bold',
         fontSize:20
       }}>🏨 Recomendações de hotéis</Text>
-      {/* mostrar a foto do hotel recomendado, nome, estrelas e valor */}
+      {/* mostrar a foto do hotel, nome, estrelas e valor  */}
     </View>
   )
 }

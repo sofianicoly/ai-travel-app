@@ -84,7 +84,7 @@ export default function TripDetails() {
                 </Text>
                 <Text style={{
                     fontFamily: 'outfit',
-                    fontSize: 17,
+                    fontSize: 18,
                     color: Colors.grey,
                 }}>
                     - {tripDetails.startDate ? moment(tripDetails.endDate).format('DD MMM YYYY') : 'Data não disponível'}
@@ -92,7 +92,7 @@ export default function TripDetails() {
                 </View>
                 <Text style={{
                     fontFamily: 'outfit',
-                    fontSize: 17,
+                    fontSize: 18,
                     color: Colors.grey,
                 }}>
                     ✈️ {tripDetails.traveler?.title || 'Título não disponível'}</Text>
