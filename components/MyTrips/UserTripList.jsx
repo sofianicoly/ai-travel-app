@@ -64,7 +64,7 @@ export default function UserTripList({ userTrips }) {
                             fontSize: 17,
                             color: Colors.grey,
                         }}>
-                            ✈️ {LatestTrip.traveler.title}
+                            🧳 {LatestTrip.traveler.title}
                         </Text>
                     </View>
                     <TouchableOpacity

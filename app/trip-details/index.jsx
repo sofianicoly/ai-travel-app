@@ -4,6 +4,7 @@ import { useLocalSearchParams, useNavigation } from 'expo-router';
 import moment from 'moment';
 import { Colors } from '../../constants/Colors';
 import FlightInfo from '../../components/TripDetails/FlightInfo';
+import HotelList from '../../components/TripDetails/HotelList';
 
 export default function TripDetails() {
     const navigation = useNavigation();
@@ -83,7 +84,7 @@ export default function TripDetails() {
                 </Text>
                 <Text style={{
                     fontFamily: 'outfit',
-                    fontSize: 18,
+                    fontSize: 17,
                     color: Colors.grey,
                 }}>
                     - {tripDetails.startDate ? moment(tripDetails.endDate).format('DD MMM YYYY') : 'Data não disponível'}
@@ -91,15 +92,15 @@ export default function TripDetails() {
                 </View>
                 <Text style={{
                     fontFamily: 'outfit',
-                    fontSize: 18,
+                    fontSize: 17,
                     color: Colors.grey,
                 }}>
                     ✈️ {tripDetails.traveler?.title || 'Título não disponível'}</Text>
             
             {/* info voo */}
-                
+                <FlightInfo/>
             {/* lista hotel */}
-
+                <HotelList/>
             {/* planner viagem info */}
 
             </View>
