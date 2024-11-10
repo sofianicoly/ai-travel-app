@@ -1,16 +1,17 @@
-import { View, Text, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Colors } from './../../constants/Colors';
-import { auth, db } from './../../configs/FirebaseConfig'; // Certifique-se de importar o db do Firestore
+import { auth, db } from './../../configs/FirebaseConfig';
 import { query, collection, where, getDocs } from 'firebase/firestore';
 
 export default function ProfileScreen() {
   const user = auth.currentUser;
   const [userTrips, setUserTrips] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (user) {
-      getUserTrips(user.email); // Carregar as viagens do usuário após o login
+      getUserTrips(user.email);
     }
   }, [user]);
 
@@ -25,76 +26,112 @@ export default function ProfileScreen() {
       setUserTrips(trips);
     } catch (error) {
       console.error('Erro ao carregar viagens:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   // Verificando se o usuário tem viagens e pegando a mais recente
-  const LatestTrip = userTrips.length > 0 ? JSON.parse(userTrips[0].tripData) : null;
+  const latestTrip = userTrips.length > 0 ? JSON.parse(userTrips[0].tripData) : null;
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      {/* Foto de Perfil e Informações Básicas */}
+      <View style={styles.header}>
+          <Image
+            source={{ uri: 'https://static.vecteezy.com/ti/vetor-gratis/p1/8442086-ilustracao-de-icone-humano-usuario-simbolo-icone-design-moderno-em-fundo-em-branco-vetor.jpg' }}
+            style={styles.profileImage}
+          />
 
-      {/* Informações do usuário */}
-      <View style={styles.infoContainer}>
-        <Text style={styles.greetingText}>Olá, conheça o seu perfil!</Text>
+        <Text style={styles.greetingText}>Olá, {user?.displayName || 'Usuário'}!</Text>
         <Text style={styles.infoText}>E-mail: {user?.email}</Text>
-        
-        {/* Exibindo a viagem mais recente */}
-        {LatestTrip ? (
+      </View>
+
+      {/* Exibindo a Viagem Mais Recente */}
+      <View style={styles.tripContainer}>
+        <Text style={styles.sectionTitle}>Última Viagem</Text>
+        {loading ? (
+          <ActivityIndicator size="large" color={Colors.primary} />
+        ) : latestTrip ? (
           <>
-            <Text style={styles.tripText}>Última Viagem:</Text>
-            <Text style={styles.infoText}>Destino: {LatestTrip.locationInfo.name}</Text>
-            <Text style={styles.infoText}>Data de Início: {new Date(LatestTrip.startDate).toLocaleDateString()}</Text>
-            <Text style={styles.infoText}>Data de Fim: {new Date(LatestTrip.endDate).toLocaleDateString()}</Text>
+            <Text style={styles.tripText}>Destino: {latestTrip.locationInfo.name}</Text>
+            <Text style={styles.infoText}>Data de Início: {new Date(latestTrip.startDate).toLocaleDateString()}</Text>
+            <Text style={styles.infoText}>Data de Fim: {new Date(latestTrip.endDate).toLocaleDateString()}</Text>
           </>
         ) : (
           <Text style={styles.infoText}>Você ainda não tem viagens registradas.</Text>
         )}
       </View>
 
-      {/* Botão para editar perfil */}
+      {/* Botão para Editar Perfil */}
       <TouchableOpacity style={styles.editButton}>
         <Text style={styles.editButtonText}>Editar perfil</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
+    flexGrow: 1,
+    padding: 40,
     backgroundColor: Colors.white,
   },
+  header: {
+    alignItems: 'center',
+    marginBottom: 30,
+    marginTop:30
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 70,
+    marginBottom: 10,
+  },
   greetingText: {
-    marginTop: 50,
     fontFamily: 'outfit-medium',
     color: Colors.grey,
     fontSize: 25,
-  },
-  infoContainer: {
-    marginBottom: 30,
+    textAlign: 'center',
   },
   infoText: {
-    marginTop: 10,
+    marginTop: 5,
     fontFamily: 'outfit',
     fontSize: 17,
+    color: Colors.greyDark,
+    textAlign:'center'
+  },
+  tripContainer: {
+    padding: 10,
+    backgroundColor: Colors.lightGrey,
+    borderRadius: 15,
+    marginVertical: 10,
+  },
+  sectionTitle: {
+    fontFamily: 'outfit-medium',
+    fontSize: 25,
+    color: Colors.grey,
+    marginBottom: 15,
+    textAlign: 'center',
   },
   tripText: {
-    marginTop: 50,
-    fontFamily: 'outfit-bold',
-    fontSize: 20,
-    color: Colors.primary,
+    fontFamily: 'outfit',
+    fontSize: 17,
+    color: Colors.greyDark,
+    marginBottom: 5,
+    textAlign:'center'
   },
   editButton: {
-    padding: 10,
+    padding: 12,
     backgroundColor: Colors.primary,
-    borderRadius: 15,
+    borderRadius: 10,
+    alignSelf: 'center',
+    width: '60%',
   },
   editButtonText: {
     color: Colors.white,
-    fontFamily: 'outfit',
-    fontSize: 15,
+    fontFamily: 'outfit-medium',
+    fontSize: 16,
     textAlign: 'center',
   },
 });

@@ -1,17 +1,17 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
 import { Colors } from '@/constants/Colors';
-import { useRouteInfo, useRouter } from 'expo-router/build/hooks';
+import { useRouter } from 'expo-router';
 
 export default function Login() {
   const router = useRouter();
 
   return (
-    <View>
+    <ScrollView>
       <Image
-        source={require('./../assets/images/login.jpeg')}
+        source={require('./../assets/images/login2.jpg')}
         style={{
-          width: '100%',
+          width: 410,
           height: 540,
         }}
       />
@@ -22,7 +22,7 @@ export default function Login() {
             fontSize: 25,
             fontFamily: 'outfit-bold',
             textAlign: 'center',
-            margin: 18,
+            margin: 15,
           }}
         >
           Planejador de Viagens
@@ -49,14 +49,14 @@ export default function Login() {
               color: Colors.white,
               textAlign: 'center',
               fontFamily: 'outfit',
-              fontSize: 17,
+              fontSize: 18,
             }}
           >
             Quero planejar minha viagem!
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     marginTop: -23,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    height: '100%',
+    height: 380,
     padding: 18,
     alignItems: 'center',
   },
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: Colors.primary,
     borderRadius: 99,
-    marginTop: '21%',
+    marginTop: '14%',
     width: '85%',
   },
 });

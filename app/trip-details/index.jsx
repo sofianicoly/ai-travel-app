@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import moment from 'moment';
@@ -10,6 +10,8 @@ export default function TripDetails() {
     const navigation = useNavigation();
     const { trip } = useLocalSearchParams();
     const [tripDetails, setTripDetails] = useState({});
+    const [hotels, setHotels] = useState({});
+
 
     // Função para garantir que os dados sejam convertidos corretamente em objeto JSON
     const formatData = (data) => {
@@ -30,10 +32,14 @@ export default function TripDetails() {
 
         // Converta o trip para objeto JSON, se for uma string
         const formattedTrip = formatData(trip);
+
+        setHotels(formatData(formattedTrip.tripPlan.hotel))
+        console.log(formatData(formattedTrip.tripPlan.hotel))
         
         // Verifique se tripDetails possui a estrutura correta e defina no estado
         if (formattedTrip?.locationInfo) {
             setTripDetails(formattedTrip);
+            
         } else if (formattedTrip?.tripData) {
             setTripDetails(formatData(formattedTrip.tripData));
         } else {
@@ -46,7 +52,9 @@ export default function TripDetails() {
     }
 
     return (
-        <View>
+        <ScrollView style={{
+            paddingBottom:5
+        }}>
             <Image 
                 source={{
                     uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${tripDetails.locationInfo.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`
@@ -100,13 +108,17 @@ export default function TripDetails() {
             {/* info voo */}
                 <FlightInfo/>
             {/* lista hotel */}
-                <HotelList/>
+                <HotelList hotelList={hotels}/>
             {/* planner viagem info */}
 
             </View>
 
 
 
-        </View>
+        </ScrollView>
+
+
+
+//app/trip-details/index.jsx
     );
 }

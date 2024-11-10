@@ -14,9 +14,11 @@ export default function StartNewTripCard() {
         alignItems:'center',
         gap:25
     }}>
-
-
-        <FontAwesome6 name="location-dot" size={30} color='black'/>
+      
+      <TouchableOpacity onPress={() => router.push('/create-trip/search-place')}>
+        <FontAwesome6 name="location-dot" size={30} color='black' />
+      </TouchableOpacity>
+      
       <Text style={{
         fontFamily:'outfit-medium',
         fontSize:25,

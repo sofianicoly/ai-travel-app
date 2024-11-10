@@ -4,6 +4,9 @@ import { TouchableOpacity } from 'react-native';
 import { Colors } from '../../constants/Colors';
 
 export default function FlightInfo({ flightData }) {
+    const openBookingSite = (hotelUrl) => {
+        Linking.openURL(hotelUrl).catch((err) => console.error('Erro ao tentar abrir o link: ', err));
+    };
     return (
         <View style={{
             marginTop:20,
@@ -24,10 +27,11 @@ export default function FlightInfo({ flightData }) {
             fontFamily:'outfit-bold',
             fontSize:20,
         }}>✈️ Voos</Text>
-                <TouchableOpacity style={{
+
+<TouchableOpacity style={{
                 backgroundColor:Colors.primary,
                 padding:5,
-                width:150,
+                width:100,
                 borderRadius:7,
                 marginTop:7
             }}><Text style={{
@@ -35,23 +39,27 @@ export default function FlightInfo({ flightData }) {
                 fontSize:15,
                 color:Colors.white,
                 textAlign:'center'
-            }}>Agendar viagem</Text>
-
+            }}>Agendar</Text>
             </TouchableOpacity>
-
             
             </View>
 
+                    <Text style={{
+            fontFamily: 'outfit',
+            fontSize: 16,
+        }}>
+            Linha: <Text style={{ fontFamily: 'outfit-bold' }}>LATAM</Text>
+        </Text>
+
             <Text style={{
-            fontFamily:'outfit',
-            fontSize:16,
-            marginTop:5,
-        }}>Linha: GOL</Text>
-            <Text style={{
-            fontFamily:'outfit',
-            fontSize:16,
-        }}>Preço: 100$ - 200$</Text>
-            
+                fontFamily: 'outfit',
+                fontSize: 16,
+            }}>
+                Preço: <Text style={{ fontFamily: 'outfit-bold' }}>300$ - 600$</Text>
+            </Text>
+
+            <View>
+            </View>
         </View>
     );
 }

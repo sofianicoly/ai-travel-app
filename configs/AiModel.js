@@ -26,7 +26,13 @@ export const chatSession = model.startChat({
             role: "user",
             parts: [
                 {
-                    text: "Generate Travel Plan for Location : Las Vegas, NV, USA, for 9 Days and 8 Night for Apenas eu with a Luxuoso budget with a Flight details, Flight Price with Booking url, Hotels options list with HotelName, Hotel address, Price, hotel image url, geo coordinates, rating, descriptions and Places to visit nearby with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, Time t travel each of the location for 9 days and 8 night with each day plan with best time to visit in JSON format.",
+                    text: `Gerar um plano de viagem para Las Vegas, NV, EUA, para 2 dias e 1 noite, com orçamento luxuoso. 
+                            Detalhes: 
+                            - Voo: preço, aeroporto de partida e chegada, URL de reserva
+                            - Hotéis: nome, endereço, preço, imagem, coordenadas geográficas, avaliação, descrição
+                            - Itinerário: sugestões de lugares a visitar nas proximidades, nome, detalhes, imagem, coordenadas geográficas, preços dos ingressos e tempo de viagem
+                            - Data: de 2024-11-08 até 2024-11-09.
+                            Resposta no formato JSON.`,
                 },
             ],
         },
@@ -34,12 +40,41 @@ export const chatSession = model.startChat({
             role: "model",
             parts: [
                 {
-                    text: "```json\n{\n  \"flight\": {\n    \"departure_airport\": \"Your Departure Airport\",\n    \"arrival_airport\": \"Las Vegas McCarran International Airport (LAS)\",\n    \"flight_price\": \"Please enter a desired budget for flights\",\n    \"booking_url\": \"https://www.google.com/flights\" // Example URL, replace with your preferred booking site\n  },\n  \"hotel\": [\n    {\n      \"name\": \"The Venetian Resort Las Vegas\",\n      \"address\": \"3355 Las Vegas Blvd S, Las Vegas, NV 89109\",\n      \"price\": \"Starting from $250 per night\",\n      \"image_url\": \"https://www.venetian.com/content/dam/venetian/images/home/hero/venetian-hero-1.jpg\",\n      \"geo_coordinates\": \"36.1009,-115.1732\",\n      \"rating\": \"4.5 stars\",\n      \"description\": \"A luxurious resort with elegant rooms, world-class dining, a replica of Venice with canals and gondolas, and a casino.\"\n    },\n    // additional hotel and itinerary data here\n  ]\n}\n```",
+                    text: `{
+                        "flight": {
+                            "departure_airport": "Seu aeroporto de partida",
+                            "arrival_airport": "Aeroporto Internacional McCarran de Las Vegas (LAS)",
+                            "flight_price": "1000$",
+                            "booking_url": "https://www.google.com/flights"
+                        },
+                        "hotel": [
+                            {
+                                "name": "The Venetian Resort Las Vegas",
+                                "address": "3355 Las Vegas Blvd S, Las Vegas, NV 89109",
+                                "price": "$250 por noite",
+                                "image_url": "https://www.venetian.com/images/hero/venetian-hero-1.jpg",
+                                "geo_coordinates": "36.1009,-115.1732",
+                                "rating": "4.5 estrelas",
+                                "description": "Um resort luxuoso com quartos elegantes, restaurantes de classe mundial e um cassino."
+                            }
+                        ],
+                        "itinerary": [
+                            {
+                                "placeName": "Las Vegas Strip",
+                                "placeDetails": "A famosa avenida de Las Vegas, com hotéis e cassinos.",
+                                "placeImageUrl": "https://www.example.com/vegas-strip.jpg",
+                                "geoCoordinates": "36.1699,-115.1398",
+                                "ticketPricing": "Gratuito",
+                                "timeToVisit": "1-2 horas"
+                            }
+                        ]
+                    }`,
                 },
             ],
         },
     ],
 });
+
 
 // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
 // console.log(result.response.text());

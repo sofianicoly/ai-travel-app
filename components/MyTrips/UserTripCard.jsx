@@ -24,7 +24,7 @@ export default function UserTripCard({ trip }) {
             flexDirection: 'row',
             alignItems: 'center',
             gap: 10 // Em vez de 'gap'
-        }}>
+        }}> 
             <Image 
                 source={{
                     uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${tripData?.locationInfo?.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`
