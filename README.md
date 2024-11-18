@@ -61,7 +61,11 @@ Banner/Gif relacionado ao trabalho
 
 `Periodo: 4º período`
 
-Adicione uma breve descrição sobre o objetivo do projeto (add dps)
+O Planner de Viagens é uma plataforma desenvolvida em React Native para
+auxiliar viajantes a organizarem todas as informações de sua viagem em um único
+local. Com o uso do Firebase e integração com APIs de voos e hotéis, a aplicação
+visa simplificar o planejamento e facilitar o acesso a detalhes importantes como
+voos, hotéis, itinerários e pontos turísticos.
 
 ## Integrantes
 
@@ -73,15 +77,16 @@ Adicione uma breve descrição sobre o objetivo do projeto (add dps)
 
 ## Instruções de utilização
 
-* `Acesse` http://
 * `Crie uma conta` com um `Email` ou `Senha` válidos.
 * Ou use o Email: teste@gmail.com senha: Teste123!.
 
 * 🚨ATENÇÃO: atende-se as validações de cadastro e login!
 
 # Documentação
+<li><a href="[docs/01-Documentação de Contexto.md](https://drive.google.com/drive/folders/1wKbYObnF19NKgz-6sEc3hjC8rFHjVy40)"> Documentação Aplicativo Planejador de Viagens - SOFIA</a></li>
 
-<ol>
+
+<!--<ol>
 <li><a href="docs/01-Documentação de Contexto.md"> Documentação de Contexto</a></li>
 <li><a href="docs/02-Especificação do Projeto.md"> Especificação do Projeto</a></li>
 <li><a href="docs/03-Metodologia.md"> Metodologia</a></li>
