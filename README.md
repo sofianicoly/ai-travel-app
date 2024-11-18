@@ -83,7 +83,8 @@ voos, hotéis, itinerários e pontos turísticos.
 * 🚨ATENÇÃO: atende-se as validações de cadastro e login!
 
 # Documentação
-<li><a href="[docs/01-Documentação de Contexto.md](https://drive.google.com/drive/folders/1wKbYObnF19NKgz-6sEc3hjC8rFHjVy40)"> Documentação Aplicativo Planejador de Viagens - SOFIA</a></li>
+<li><a href="https://drive.google.com/drive/folders/1wKbYObnF19NKgz-6sEc3hjC8rFHjVy40" target="_blank">Documentação Aplicativo Planejador de Viagens - SOFIA</a></li>
+
 
 
 <!--<ol>
