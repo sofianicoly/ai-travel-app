@@ -53,8 +53,6 @@ Join our community of developers creating universal apps.
 
 # Planejador de Viagens
 
-Banner/Gif relacionado ao trabalho
-
 `Ciência da Computação`
 
 `Projeto: Planejador de Viagens`
